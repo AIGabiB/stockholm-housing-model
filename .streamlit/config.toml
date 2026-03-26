@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#4CAF50"             # Grön knappfärg
+backgroundColor = "#0E1117"          # Mörk bakgrund
+secondaryBackgroundColor = "#242730" # Paneler, input-fält
+textColor = "#E0E0E0"                 # Ljus text
+font = "sans serif"                   # Rent och modernt typsnitt
