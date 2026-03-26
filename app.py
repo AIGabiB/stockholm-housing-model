@@ -111,27 +111,28 @@ elif page == "🧪 Test models":
                                         min_value="today",
                                         max_value=datetime.date.today() + datetime.timedelta(days=90),
                                         value=None)
-         
+
         st_lat = None
         st_long = None
 
         st.write("")
         user_address = st.text_input("Enter your address")
-        if st.button("Get coordinates"):
-            if user_address:
-                st_lat, st_long = get_coordinates(user_address)
-                if st_lat and st_long:
-                    if not is_in_stockholm(st_lat,st_long):
-                        st.error("❌ The address is OUTSIDE the Stockholm region.\n"
-                                f"Allowed coordinates:\n"
-                                f"- Latitude: {MIN_LAT} – {MAX_LAT}\n"
-                                f"- Longitude: {MIN_LON} – {MAX_LON}")
-                    st.markdown(
-                        f"📍 Longitude: `{st_long:.4f}`  |  Latitude: `{st_lat:.4f}`"
-                        )
-                else:   
-                    st.error("Could not find this address.")
-            
+        if user_address and len(user_address.strip()) > 5:
+            st_lat, st_long = get_coordinates(user_address)
+            if st_lat and st_long:
+                if not is_in_stockholm(st_lat,st_long):
+                    st.error("❌ The address is OUTSIDE the Stockholm region.\n"
+                            f"Allowed coordinates:\n"
+                            f"- Latitude: {MIN_LAT} – {MAX_LAT}\n"
+                            f"- Longitude: {MIN_LON} – {MAX_LON}")
+                st.markdown(
+                    f"📍 Longitude: `{st_long:.4f}`  |  Latitude: `{st_lat:.4f}`"
+                    )
+            else:   
+                st.error("Could not find this address.")
+        else:
+            st.error("Please enter your full address to get coordinates.")
+                
         st_Housing_Type = st.radio("House type",["Apartment","House","Other"],horizontal=True)
 
 
@@ -206,7 +207,6 @@ elif page == "🧪 Test models":
 
     with col2:
         st.write("")
-
         if st.button(
             "Predict Price (Ridge) vs (Random Forest) ",
             type="primary",
