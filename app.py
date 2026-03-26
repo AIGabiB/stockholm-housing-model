@@ -4,6 +4,7 @@ import numpy as np
 import datetime
 import joblib
 from geopy.geocoders import Nominatim # Used to get latitude and longitude of the property entered by the user 
+from geopy.exc import GeocoderTimedOut
 from src.visualizations.plots import plot_feature_importance,plot_scatter # Self created file that contains custom plots features 
 from src.data_manipulation.feature_enginnering import engineer_features # Self created file that performs feature engineering on user input  
 
@@ -81,17 +82,18 @@ elif page == "🧪 Test models":
     MIN_LAT, MAX_LAT = 59.2272, 59.4402
     MIN_LON, MAX_LON = 17.7605, 18.2011
 
+    @st.cache_data
     def get_coordinates(address):
-        # Create a geocoder-instans 
-        geolocator = Nominatim(user_agent="my_house_app_123")
-        
-        # Get coordinates
-        location = geolocator.geocode(address)
-        
-        if location:
-            return location.latitude , location.longitude 
-        else:
+        geolocator = Nominatim(user_agent="my_house_app_123", timeout=10)
+
+        try:
+            location = geolocator.geocode(address)
+            if location:
+                return location.latitude, location.longitude
+        except GeocoderTimedOut:
             return None, None
+
+        return None, None
 
     def is_in_stockholm(lat,long):
         if ( MAX_LAT >= lat >= MIN_LAT ) and (MAX_LON >= long >= MIN_LON):
@@ -115,19 +117,20 @@ elif page == "🧪 Test models":
 
         st.write("")
         user_address = st.text_input("Enter your address")
-        if user_address:
-            st_lat, st_long = get_coordinates(user_address)
-            if st_lat and st_long:
-                if not is_in_stockholm(st_lat,st_long):
-                    st.error("❌ The address is OUTSIDE the Stockholm region.\n"
-                            f"Allowed coordinates:\n"
-                            f"- Latitude: {MIN_LAT} – {MAX_LAT}\n"
-                            f"- Longitude: {MIN_LON} – {MAX_LON}")
-                st.markdown(
-                    f"📍 Longitude: `{st_long:.4f}`  |  Latitude: `{st_lat:.4f}`"
-                    )
-            else:   
-                st.error("Could not find this address.")
+        if st.button("Get coordinates"):
+            if user_address:
+                st_lat, st_long = get_coordinates(user_address)
+                if st_lat and st_long:
+                    if not is_in_stockholm(st_lat,st_long):
+                        st.error("❌ The address is OUTSIDE the Stockholm region.\n"
+                                f"Allowed coordinates:\n"
+                                f"- Latitude: {MIN_LAT} – {MAX_LAT}\n"
+                                f"- Longitude: {MIN_LON} – {MAX_LON}")
+                    st.markdown(
+                        f"📍 Longitude: `{st_long:.4f}`  |  Latitude: `{st_lat:.4f}`"
+                        )
+                else:   
+                    st.error("Could not find this address.")
             
         st_Housing_Type = st.radio("House type",["Apartment","House","Other"],horizontal=True)
 
