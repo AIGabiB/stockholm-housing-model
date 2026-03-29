@@ -104,7 +104,7 @@ elif page == "🧪 Test models":
         else:
             return False
 
-    st.title(f"{space*18}House prediction in Stockholm 🏠")
+    st.title(f"{space*12}House prediction in Stockholm 🏠")
 
     colA, colB = st.columns(2)
 
@@ -260,7 +260,7 @@ elif page == "🧪 Test models":
 
 
 elif page == "📊 Analyse models":
-    st.title(f"{space*14}Ridge Regression vs Random Forest")
+    st.title(f"{space*8}Ridge Regression vs Random Forest")
 
     col1, col2 = st.columns(2,border=True)
     
