@@ -87,7 +87,7 @@ elif page == "🧪 Test models":
 
     @st.cache_data
     def get_coordinates(address):
-        geolocator = Nominatim(user_agent="my_house_app_123", timeout=10)
+        geolocator = Nominatim(user_agent="my_house_app_1234", timeout=10)
 
         try:
             location = geolocator.geocode(address)
