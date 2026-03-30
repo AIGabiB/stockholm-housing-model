@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 import joblib
+import time
 from geopy.geocoders import Nominatim # Used to get latitude and longitude of the property entered by the user 
 from geopy.exc import GeocoderTimedOut
 from src.visualizations.plots import plot_feature_importance,plot_scatter # Self created file that contains custom plots features 
@@ -122,6 +123,7 @@ elif page == "🧪 Test models":
         user_address = st.text_input("Enter your address")
         if user_address: 
             if len(user_address.strip()) > 5:
+                time.sleep(2)
                 st_lat, st_long = get_coordinates(user_address)
                 if st_lat and st_long:
                     if not is_in_stockholm(st_lat,st_long):
