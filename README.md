@@ -4,7 +4,7 @@ A machine learning project for predicting housing prices in Stockholm using Ridg
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project focuses on predicting housing prices in Stockholm.
 
@@ -14,15 +14,15 @@ The application allows users to:
 * Compare two different models
 * Analyze model performance and feature importance
 
-⚠️ Due to data privacy constraints, real data and trained models are not included. Therefore the app uses **dummy models**.  
+Due to data privacy constraints, real data and trained models are not included. Therefore the app uses **dummy models**.  
 
-✅ The **Analyse Models** page shows analyses on the real models, but those models are not included in this project.
+The **Analyse Models** page shows analyses on the real models, but those models are not included in this project.
 
 ---
 
-## 🖥️ Application Preview
+## Application Preview
 
-### 🏠 Info Page
+### Info Page
 
 Overview of the application and its functionality.
 
@@ -33,14 +33,14 @@ Overview of the application and its functionality.
 
 ---
 
-### 🧪 Test Models
+### Test Models
 
 Users can input their own housing data and get predictions.
 
 &nbsp;&nbsp;&nbsp;<img src="images/test_models_page.png" height="300">
 ---
 
-### 📊 Analyze Models
+### Analyze Models
 
 Displays metrics and feature importance from the trained models.
 
@@ -48,7 +48,7 @@ Displays metrics and feature importance from the trained models.
 
 ---
 
-## 🚀 Features
+## Features
 
 * Predict housing prices using:
 
@@ -63,7 +63,7 @@ Displays metrics and feature importance from the trained models.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 stockholm-housing-model/
@@ -99,7 +99,7 @@ stockholm-housing-model/
 
 ---
 
-## ⚙️ Setup
+## Setup
 
 ```bash
 git clone https://github.com/AIGabiB/stockholm-housing-model.git
@@ -110,14 +110,14 @@ python -m streamlit run app.py
 
 ---
 
-## 🧠 Models
+## Models
 
 - **Ridge Regression** – scales data, trains in a pipeline, stores results (predictions, metrics, feature importance), and saves locally as `.pkl`.
 - **Random Forest** – scales data, trains in a pipeline, stores results (predictions, metrics, feature importance), and saves locally as `.pkl`.
 
 ---
 
-## 📊 Data
+## Data
 
 * `raw_synthetic.parquet`: Dummy dataset
 * Real dataset is not included due to confidentiality
@@ -130,7 +130,7 @@ python -m streamlit run app.py
 
 ---
 
-## 📈 Visualizations
+## Visualizations
 
 Custom plots:
 
@@ -143,14 +143,14 @@ Located in:
 
 ---
 
-## 🐍 Environment
+## Environment
 
 * Python 3.10.7
 * See `requirements.txt`
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This project uses synthetic data for demonstration purposes only.
 Real data and models are excluded due to company restrictions.
