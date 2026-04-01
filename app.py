@@ -244,7 +244,7 @@ elif page == "🧪 Test models":
 
 
                 df_to_download = data_to_predict.copy()
-                df_to_download["Linear Regression"] = prediction_ridge
+                df_to_download["Ridge Regression"] = prediction_ridge
                 df_to_download["Random Forest"] = prediction_rrf
 
                 csv = df_to_download.to_csv(index=False)
